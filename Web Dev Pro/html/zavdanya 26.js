@@ -38,7 +38,7 @@ function output(arr) {
 
 // Головна функція
 function main() {
-  let arr = input();
+  let rr = input();
   sort(arr);
   output(arr);
 }
