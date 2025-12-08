@@ -17,7 +17,7 @@ function input() {
   return arr;
 }
 
-// Функція сортування масиву (бульбашкове сортування)
+// Функція сортування масиву: (бульбашкове сортування)
 function sort(arr) {
   for (let last = arr.length - 1; last > 0; last--) {
     for (let i = 0; i < last; i++) {
