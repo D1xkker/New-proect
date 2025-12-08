@@ -1,31 +1,46 @@
-/// Функція для знаходження довжини найдовшої зростаючої підпослідовності
-var lengthOfLIS = function (nums) {
-  /// масив для збереження хвостів підпослідовностей
-  let tails = new Array(nums.length).fill(0);
-  // розмір найдовшої підпослідовності
-  let size = 0;
-  // перебір елементів масиву
-  for (let x of nums) {
-    // ініціалізація меж для бінарного пошуку
-    let i = 0,
-      // права межа
-      j = size;
-    // бінарний пошук
-    while (i !== j) {
-      //// знаходження середини
-      let m = Math.floor((i + j) / 2);
-      /// порівняння з хвостом
-      if (tails[m] < x) {
-        // рух праворуч
-        i = m + 1;
-        // рух ліворуч
-      } else {
-        j = m;
+// Функція для введення масиву
+function input() {
+  let size;
+  // Введення розміру масиву
+  while (true) {
+    size = parseInt(prompt("Введіть розмір масиву:"));
+    if (size > 0) break;
+    alert("Розмір масиву не може бути менше одного");
+  }
+
+  let arr = [];
+  // Введення елементів масиву
+  for (let i = 0; i < size; i++) {
+    let value = parseInt(prompt(`Введіть значення ${i + 1}:`));
+    arr.push(value);
+  }
+  return arr;
+}
+
+// Функція сортування масиву (бульбашкове сортування)
+function sort(arr) {
+  for (let last = arr.length - 1; last > 0; last--) {
+    for (let i = 0; i < last; i++) {
+      if (arr[i] > arr[i + 1]) {
+        // Міняємо місцями два елементи
+        let temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
       }
     }
-    /// оновлення хвостів
-    tails[i] = x;
-    if (i === size) ++size;
   }
-  return size;
-};
+}
+
+// Функція виводу масиву
+function output(arr) {
+  console.log("Відсортований масив = [" + arr.join(", ") + "]");
+}
+
+// Головна функція
+function main() {
+  let arr = input();
+  sort(arr);
+  output(arr);
+}
+
+main();
